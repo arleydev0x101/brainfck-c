@@ -69,7 +69,7 @@ int main(int argc, char** argv) {
     fclose(f);
 
     int x = sizeof(cells) / 2;
-    for (int i = 0; i < (int)strlen(input) && x < (int)sizeof(cells); ++i) {
+    for (size_t i = 0; i < strlen(input) && x < (int)sizeof(cells); ++i) {
         switch (input[i]) {
             case '>':
                 ++x;
@@ -93,7 +93,7 @@ int main(int argc, char** argv) {
             case '.':
 	           	if (parser.non_char) {
 					printf("%d", cells[x]);
-					if ((i + 3) < (int)strlen(input)) printf("%c", parser.sep);
+					if ((i + 3) < strlen(input)) printf("%c", parser.sep);
 				}
 	           	else printf("%c", cells[x]);
 	            break;
