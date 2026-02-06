@@ -1,39 +1,78 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+#include <getopt.h>
+#include <unistd.h>
+
+#define SELF_NAME argv[0]
+
+struct ProgParser {
+	char* filename;
+	int is_error;
+	int non_char;
+	int help;
+	char sep;
+};
+
+// DON'T TOUCH THIS, PLEASE!
+const char* P_OPTIONS = "chs:";
+
+void parse_opts(char*, int, char**, struct ProgParser*);
 
 void print_usage(char*);
+void print_options(void);
 int check_ext(char*);
+
+int stoi(char*);
 
 char cells[100] = {0};
 
 int main(int argc, char** argv) {
-    FILE* f;
+	if (argc == 1){
+		print_usage(SELF_NAME);
+		return 0;
+	}
 
-    if (argc == 1 || argc < 2){
-        print_usage(argv[0]);
-        return 0;
-    }
-    else if (argc == 2){
-        f = fopen(argv[1], "r");
+	struct ProgParser parser = {0, .sep = ' '};
 
-        if (f == NULL) {
-            printf("%s: The file \"%s\" is not exist in the directory\n", argv[0], argv[1]);
-            return 1;
-        }
-        if (check_ext(argv[1])){
-            printf("%s: File extension of \"%s\" is not valid!\n", argv[0], argv[1]);
-            return 1;
-        }
+	parse_opts(SELF_NAME, argc, argv, &parser);
+
+	if (parser.is_error) return 1;
+
+	if (parser.help){
+		print_usage(SELF_NAME);
+		print_options();
+		return 0;
+	}
+
+	if (parser.filename == NULL && argc > 1){
+		printf("%s: option \"filename\" is required\n", SELF_NAME);
+		return 1;
+	}
+
+	FILE* f = fopen(parser.filename, "r");
+
+    if (f == NULL) {
+        printf("%s: The file \"%s\" is not exist in the directory\n", SELF_NAME, parser.filename);
+        return 1;
     }
+    if (check_ext(parser.filename)){
+        printf("%s: File extension of \"%s\" is not valid!\n", argv[0], argv[1]);
+        return 1;
+    }
+
 
     char input[1000];
     int i = 0;
+
+    int stack_loop[100];
+    int stack_i = -1;
 
     while((input[i++] = getc(f)) != EOF);
     fclose(f);
 
     int x = sizeof(cells) / 2;
-    for (int y = 0, i = 0; i < (int)strlen(input) && x < (int)sizeof(cells); ++i) {
+    for (int i = 0; i < (int)strlen(input) && x < (int)sizeof(cells); ++i) {
         switch (input[i]) {
             case '>':
                 ++x;
@@ -48,14 +87,16 @@ int main(int argc, char** argv) {
                 --cells[x];
                 break;
             case '[':
-                y = i;
+            	stack_loop[++stack_i] = i;
                 break;
             case ']':
-                if (cells[x] != 0) i = y;
+                if (cells[x] != 0) i = stack_loop[stack_i];
+                else --stack_i;
                 break;
             case '.':
-                printf("%c", cells[x]);
-                break;
+	           	if (parser.non_char) printf("%d%c", cells[x], parser.sep);
+	           	else printf("%c", cells[x]);
+	            break;
             case ',':
                 scanf("%c", &cells[x]);
                 break;
@@ -73,7 +114,7 @@ int main(int argc, char** argv) {
 }
 
 void print_usage(char* name) {
-    printf("%s <filename>\n", name);
+    printf("%s <filename> [options]\n", name);
 }
 
 int check_ext(char* filename){
@@ -87,4 +128,40 @@ int check_ext(char* filename){
         tok = strtok(NULL, ".");
     }
     return strcmp(tmp, ext1) == 0 || strcmp(ext2, tmp) == 0;
+}
+
+void print_options(void) {
+	puts("Options:");
+	puts("\t-c\tIt prints the output as decimal (separated by space), instead of character");
+	puts("\t-h\tIt prints the help message");
+}
+
+void parse_opts(char* name, int argc, char** argv, struct ProgParser* inp_parser){
+	int i;
+	while ((i = getopt(argc, argv, P_OPTIONS)) != -1) {
+		switch (i) {
+			case 'h':
+			inp_parser->help = 1;
+			break;
+			case 'c':
+			inp_parser->non_char = 1;
+			break;
+			case ':':
+			printf("%s: Option -s requires an argument", name);
+			inp_parser->is_error = 1;
+			break;
+			case '?':
+			inp_parser->is_error = 1;
+			break;
+		}
+	}
+	inp_parser->filename = argv[optind];
+	return;
+
+}
+
+int stoi(char* str){
+	while (*str >= 48 && *str++ <= 57);
+	if (!--*str) return atoi(str);
+	return -1;
 }
