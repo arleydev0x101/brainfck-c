@@ -53,7 +53,7 @@ This is the following symbols that you can use:
 | +      | Increments 1 value in the current cell                |
 | -      | Decrements 1 value in the current cell                |
 | .      | Prints the current cell                               |
-| \_     | Makes an input in the initial cell                    |
+| ,      | Makes an input in the initial cell                    |
 | [      | Starting loop                                         |
 | ]      | Ending loop, acts, as it checks the initial cell is 0 |
 
@@ -81,4 +81,7 @@ This code, shows the output, "Hello World!"
 This almost acts like the original BrainF\*ck
 
 ---
+
 For more info about BrainF\*ck, check it out in [Wikipedia](https://en.wikipedia.org/wiki/Brainfuck)
+
+I'm just created this immitate program, for the sake that I wanted to learn a lot in C
