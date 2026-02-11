@@ -7,5 +7,6 @@ all:
 generator:
 	g++ $(GEN_DIR) $(CFLAGS) -o brainfk-gen
 
+.PHONY: clean
 clean:
 	rm brainfk brainfk-gen
