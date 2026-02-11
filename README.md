@@ -116,7 +116,7 @@ brainfk-gen
 # Tips
 ___
 
-Instead of highlighting, manually, the output in your terminal, use this following command:
+Instead of highlighting, manually the output in your terminal, use this following command:
 ```bash
 # Write
 brainfk-gen Hello World! > sample.b
