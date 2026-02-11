@@ -46,16 +46,16 @@ Options:
 
 This is the following symbols that you can use:
 
-| Symbol | Description                                           |
-| ------ | ----------------------------------------------------- |
-| <      | Move to the left-side of the cell                     |
-| >      | Move to the right-side of the cell                    |
-| +      | Increments 1 value in the current cell                |
-| -      | Decrements 1 value in the current cell                |
-| .      | Prints the current cell                               |
-| ,      | Makes an input in the initial cell                    |
-| [      | Starting loop                                         |
-| ]      | Ending loop, acts, as it checks the initial cell is 0 |
+| Symbol | Description                                                                         |
+| ------ | ----------------------------------------------------------------------------------- |
+| <      | Move to the left-side of the cell                                                   |
+| >      | Move to the right-side of the cell                                                  |
+| +      | Increments 1 value in the current cell                                              |
+| -      | Decrements 1 value in the current cell                                              |
+| .      | Prints the current cell                                                             |
+| ,      | Makes an input in the initial cell                                                  |
+| [      | Starting loop                                                                       |
+| ]      | Ending loop, acts, as it checks the initial cell is 0. It ends the loop if its true |
 
 # Example
 
