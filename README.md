@@ -79,7 +79,8 @@ This code, shows the output, "Hello World!"
 ```
 
 # Using the Generator
-___
+
+---
 
 ## For Windows (Cygwin, WSL2, MYSYS2, etc.), Linux and MacOS
 
@@ -95,13 +96,16 @@ chmod +x brainfk-gen
 ```
 
 # Usage of the Generator
-___
+
+---
+
 ```bash
 brainfk-gen [words]
 ```
 
 # Example
-___
+
+---
 
 ```bash
 brainfk-gen Hello World!
@@ -114,9 +118,11 @@ brainfk-gen
 ```
 
 # Tips
-___
+
+---
 
 Instead of highlighting, manually the output in your terminal, use this following command:
+
 ```bash
 # Write
 brainfk-gen Hello World! > sample.b
@@ -128,11 +134,10 @@ brainfk-gen Hello World! >> sample.b
 brainfk-gen >> sample.b
 ```
 
-
 This almost acts like the original BrainF\*ck
 
 ---
 
 For more info about BrainF\*ck, check it out in [Wikipedia](https://en.wikipedia.org/wiki/Brainfuck)
 
-I'm just created this immitate program, for the sake that I wanted to learn a lot in C
+I just created this immitate program, for the sake that I wanted to learn a lot in C
