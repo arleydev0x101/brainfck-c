@@ -4,8 +4,6 @@ It is a esoteric programming language, inspired by the original esoteric program
 
 # Instructions
 
----
-
 ## For Windows (Cygwin, WSL2, MYSYS2, etc.), Linux and MacOS
 
 ```bash
@@ -21,8 +19,6 @@ chmod +x brainfck
 
 # Usage
 
----
-
 ```bash
 brainfk <filename> [options]
 
@@ -33,8 +29,6 @@ Options:
 ```
 
 # Example
-
----
 
 ```bash
 ./brainfck main.bf				# The file that you wanted to run its code
@@ -59,8 +53,6 @@ This is the following symbols that you can use:
 
 # Example
 
----
-
 This code, shows the output, "Hello World!"
 
 ```
@@ -80,8 +72,6 @@ This code, shows the output, "Hello World!"
 
 # Using the Generator
 
----
-
 ## For Windows (Cygwin, WSL2, MYSYS2, etc.), Linux and MacOS
 
 ```bash
@@ -97,15 +87,11 @@ chmod +x brainfk-gen
 
 # Usage of the Generator
 
----
-
 ```bash
 brainfk-gen [words]
 ```
 
 # Example
-
----
 
 ```bash
 brainfk-gen Hello World!
@@ -118,8 +104,6 @@ brainfk-gen
 ```
 
 # Tips
-
----
 
 Instead of highlighting, manually the output in your terminal, use this following command:
 
@@ -135,8 +119,6 @@ brainfk-gen >> sample.b
 ```
 
 This almost acts like the original BrainF\*ck
-
----
 
 For more info about BrainF\*ck, check it out in [Wikipedia](https://en.wikipedia.org/wiki/Brainfuck)
 
