@@ -1,11 +1,10 @@
-#include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 void multiply(int, char);
 
-#define MAX_LIMIT 1000
+#define MAX_LIMIT 5
 #define MEM_ERROR_MSG "Memory allocation error!\nPlease, free your memory to use this program, properly."
 
 int main(int argc, char** argv) {
@@ -20,7 +19,18 @@ int main(int argc, char** argv) {
 	if (argc == 1) {
 		printf("Enter an input: ");
 		fgets(input, MAX_LIMIT, stdin);
-		input[strlen(input) - 1] = 0;
+		for (size_t i = strlen(input); input[i-1] != '\n'; input[i++] = getchar()){
+			if (i + 1 == i_limit) {
+				i_limit += 1000;
+				char* tmp = (char*)realloc(input, i_limit);
+				if (tmp == NULL) {
+					puts(MEM_ERROR_MSG);
+					free(input);
+					return 1;
+				}
+				input = tmp;
+			}
+		}
 	}
 
 	for (int i = 1; i < argc; ++i) {
@@ -41,7 +51,6 @@ int main(int argc, char** argv) {
 	input[strlen(input) - 1] = 0;
 
 	int tmp, t;
-
 	for (int i = 0; input[i]; ++i){
 		if (i){
 			tmp = abs(input[i] - input[i - 1]);
