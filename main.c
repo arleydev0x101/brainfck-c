@@ -12,6 +12,8 @@
 	puts("\t-c\tIt prints the output as decimal (separated by space), instead of character"); \
 	puts("\t-h\tIt prints the help message");
 
+#define MAX_CELLS 100
+#define MAX_ASCII 256
 
 struct ProgParser {
 	char* filename;
@@ -27,7 +29,7 @@ const char* P_OPTIONS = "chs:";
 void parse_opts(char*, int, char**, struct ProgParser*);
 int check_ext(char*);
 
-char cells[100] = {0};
+char cells[MAX_CELLS] = {0};
 
 int main(int argc, char** argv) {
 	if (argc == 1){
@@ -84,12 +86,12 @@ int main(int argc, char** argv) {
     size_t x = sizeof(cells) / 2;
     for (size_t i = 0; i < strlen(input) && x < sizeof(cells); ++i) {
         switch (input[i]) {
-            case '>': 	++x;						break;
-            case '<': 	--x;						break;
-            case '+': 	++cells[x];					break;
-            case '-': 	--cells[x];					break;
-            case '[':	stack_loop[++stack_i] = i;	break;
-            case ',':	scanf("%c", &cells[x]);		break;
+            case '>': 	x = (x + 1) % MAX_CELLS;					break;
+            case '<': 	x = (x - 1) % MAX_CELLS;					break;
+            case '+': 	cells[x] = cells[x] + 1 % MAX_ASCII;		break;
+            case '-': 	cells[x] = cells[x] - 1 % MAX_ASCII;		break;
+            case '[':	stack_loop[++stack_i] = i;					break;
+            case ',':	scanf("%c", &cells[x]);						break;
             case ']':
                 if (cells[x] != 0) i = stack_loop[stack_i];
                 else --stack_i;
@@ -102,11 +104,6 @@ int main(int argc, char** argv) {
 	           	else putchar(cells[x]);
 	            break;
         }
-    }
-
-    if (x >= sizeof(cells)){
-        printf("%s: Index is out of cells!\n", argv[0]);
-        return 1;
     }
     putchar('\n');
     return 0;
