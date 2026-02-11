@@ -6,10 +6,16 @@
 void multiply(int, char);
 
 #define MAX_LIMIT 1000
+#define MEM_ERROR_MSG "Memory allocation error!\nPlease, free your memory to use this program, properly."
 
 int main(int argc, char** argv) {
 	size_t i_limit = MAX_LIMIT;
 	char* input = (char*) malloc(MAX_LIMIT * sizeof(char));
+
+	if (input == NULL) {
+		puts(MEM_ERROR_MSG);
+		return 1;
+	}
 
 	if (argc == 1) {
 		printf("Enter an input: ");
@@ -23,6 +29,11 @@ int main(int argc, char** argv) {
 		if (strlen(input) + strlen(argv[i]) >= i_limit){
 			i_limit += 1000;
 			char* tmp = (char*)realloc(input, i_limit);
+			if (tmp == NULL) {
+				puts(MEM_ERROR_MSG);
+				free(input);
+				return 1;
+			}
 			input = tmp;
 		}
 	}
@@ -35,9 +46,9 @@ int main(int argc, char** argv) {
 		if (i){
 			tmp = abs(input[i] - input[i - 1]);
 			t = input[i] > input[i - 1];
-			if (tmp <= 10){
+			if (tmp <= 10)
 				multiply(tmp, t ? '+' : '-');
-			}
+
 			else {
 				multiply(tmp % 10, t ? '+' : '-');
 				putchar('>');
