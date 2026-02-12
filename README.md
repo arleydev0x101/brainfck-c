@@ -20,10 +20,10 @@ This are the following requirements:
 
 | Requirements                                   | Description                                                    |
 | ---------------------------------------------- | -------------------------------------------------------------- |
-| **Make GNU**                                   | For quick compiling a software                                 |
-| **g++ or clang**                               | Our C/C++ Compiler                                             |
-| **git**                                        | For cloning/fetching the repository                            |
-| **Cygwin, MSYS2, WSL2 or Git Bash (Optional)** | For more flexible in performing this task (supported in Linux) |
+| **[Make GNU](https://www.gnu.org/software/make/)**                                   | For quick compiling a software                                 |
+| **[g++](https://gcc.gnu.org/) or [clang](https://clang.llvm.org/)**                               | Our C/C++ Compiler                                             |
+| **[Git](https://git-scm.com/)**                                        | For cloning/fetching the repository                            |
+| **[Cygwin](https://www.cygwin.com/), [MSYS2](https://www.msys2.org/), [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install) or [Git Bash](https://git-scm.com) (Optional)** | For more flexible in performing this task (supported in Linux) |
 
 In Linux and MacOS, everything was already provided.
 
