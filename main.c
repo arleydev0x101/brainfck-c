@@ -70,6 +70,8 @@ int main(int argc, char** argv) {
     int stack_loop[100];
     int stack_i = -1;
 
+    input[0] = 0;
+
     for (int i = 0; input[i] != EOF; input[i++] = getc(f)){
     	if (i == i_limit){
   			i_limit += 1000;
@@ -105,7 +107,6 @@ int main(int argc, char** argv) {
 	            break;
         }
     }
-    putchar('\n');
     free(input);
     return 0;
 }
