@@ -3,6 +3,7 @@
 It is a esoteric programming language, inspired by the original esoteric programming language, named BrainF\*ck
 
 # Quick Start
+
 To get yourself started to try this program, use this following commands:
 
 ```bash
@@ -18,11 +19,11 @@ This are the following requirements:
 
 ## Windows
 
-| Requirements                                   | Description                                                    |
-| ---------------------------------------------- | -------------------------------------------------------------- |
-| **[Make GNU](https://www.gnu.org/software/make/)**                                   | For quick compiling a software                                 |
-| **[g++](https://gcc.gnu.org/) or [clang](https://clang.llvm.org/)**                               | Our C/C++ Compiler                                             |
-| **[Git](https://git-scm.com/)**                                        | For cloning/fetching the repository                            |
+| Requirements                                                                                                                                                                        | Description                                                    |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| **[Make GNU](https://www.gnu.org/software/make/)**                                                                                                                                  | For quick compiling a software                                 |
+| **[g++](https://gcc.gnu.org/) or [clang](https://clang.llvm.org/)**                                                                                                                 | Our C/C++ Compiler                                             |
+| **[Git](https://git-scm.com/)**                                                                                                                                                     | For cloning/fetching the repository                            |
 | **[Cygwin](https://www.cygwin.com/), [MSYS2](https://www.msys2.org/), [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install) or [Git Bash](https://git-scm.com) (Optional)** | For more flexible in performing this task (supported in Linux) |
 
 In Linux and MacOS, everything was already provided.
@@ -39,7 +40,7 @@ pacman -Syu
 
 pacman -S mingw-w64-ucrt-x86_64-gcc
 
-# This will ensure if "g++" is already exist
+# This will check if "g++" is already exist
 g++ --version
 ```
 
@@ -48,10 +49,10 @@ g++ --version
 ```bash
 pacman -Syu
 
-# I suggest to add "mingw-w64-ucrt-x86_64-gcc", ensure "clang" will work
+# I suggest to add "mingw-w64-ucrt-x86_64-gcc", toensure "clang" will work
 pacman -S mingw-w64-ucrt-x86_64-gcc clang
 
-# This will ensure if "clang" is already exist
+# This will check if "clang" is already exist
 clang --version
 ```
 
@@ -204,6 +205,6 @@ If you don't prefer some other compiler, more than that default, follow the inst
 
 # Disclamer
 
-Imitating this existing program is not my intention to own the idea of the original author. Immitating this, is my only purpose to learn a lot in C.
+Imitating this existing program is not my intention to own the idea of the original author. It is my only purpose to learn a lot in C.
 
 For more info about BrainF\*ck, check it out in [Wikipedia](https://en.wikipedia.org/wiki/Brainfuck)
