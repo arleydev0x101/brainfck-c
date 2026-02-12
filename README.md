@@ -1,6 +1,6 @@
 # brainfck-c
 
-It is an esoteric programming language, inspired by the original esoteric programming language, named BrainF\*ck
+It is a esoteric programming language, inspired by the original esoteric programming language, named BrainF\*ck
 
 # Quick Start
 
@@ -28,8 +28,11 @@ This are the following requirements:
 
 In Linux and MacOS, everything was already provided.
 
-I recommend MSYS2 to download and install, since some other tools that we need is already provided.
-If Make, git, and g++ or clang, isn't there, you can use this following command:
+I recommend [MSYS2 (Click this to download)](https://github.com/msys2/msys2-installer/releases/download/2025-12-13/msys2-x86_64-20251213.exe) to download and install, since some other tools that we need is already provided.
+
+Note: Some following commands, with a "pacman", is only compatible for MSYS2, and other Linux Distribution (Arch Linux, Black Arch, Manjaro, EndeavourOS, Garuda Linux, Omarchy, etc.)
+
+If make, git, and g++ or clang, isn't there, you can use this following command:
 
 ## For g++
 
@@ -54,6 +57,16 @@ pacman -S mingw-w64-ucrt-x86_64-gcc clang
 
 # This will check if "clang" is already exist
 clang --version
+```
+
+## For git and make
+
+```bash
+# Skip this command, if you use this already
+pacman -Syu
+
+pacman -S make git
+# 
 ```
 
 # Instructions
