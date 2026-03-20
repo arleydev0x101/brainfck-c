@@ -218,9 +218,11 @@ make
 
 If you don't prefer some other compiler, more than that default, follow the instructions in **[Pre-requisites section](#pre-requisites)**
 
-# Disclamer
+# Disclaimer
 
-Imitating this existing program is not my intention to own the idea of the existing source. It is my only purpose to learn a lot in C.
+* **Attribution:** The Brainfuck esoteric programming language was originally designed by Urban Müller. This repository serves solely as an independent implementation.
+* **Educational Intent:** The primary goal of this project is to write parsers and expand upon learning the core C programming fundamentals. 
+* **Liability:** This software is provided "as is", without warranty of any kind, express or implied. In no event shall the author, arleydev0x101, be liable for any claim, damages, or other liability arising from the use of this software.
 
 For more info about BrainF\*ck, check it out in [Wikipedia](https://en.wikipedia.org/wiki/Brainfuck)
 
