@@ -20,90 +20,105 @@ int main(int argc, char **argv)
 
 	input[0] = '\0';
 
-	if (argc == 1) {
-        printf("Enter an input: ");
-        int c;
-        size_t i = 0;
-        
-        while ((c = getchar()) != '\n' && c != EOF) {
-            if (i + 1 >= i_limit) {
-                i_limit += 1000;
-                char* tmp = (char*)realloc(input, i_limit);
-                if (tmp == NULL) {
-                    puts(MEM_ERROR_MSG);
-                    free(input);
-                    return 1;
-                }
-                input = tmp;
-            }
-            input[i++] = (char)c;
-        }
-        input[i] = '\0';
-    }
-
-	for (int i = 1; i < argc; ++i) {
-
-        size_t n_mem = strlen(input) + strlen(argv[i]) + 2; 
-        
-        if (n_mem >= i_limit) {
-            i_limit = n_mem + 1000;
-            char* tmp = (char*)realloc(input, i_limit);
-            if (tmp == NULL) {
-                puts(MEM_ERROR_MSG);
-                free(input);
-                return 1;
-            }
-            input = tmp;
-        }
-        
-        strcat(input, argv[i]);
-        strcat(input, " "); 
-    }
-
-    if (strlen(input) > 0) {
-        input[strlen(input) - 1] = '\0';
-    }
-
-	int tmp, t;
-	for (int i = 0; input[i]; ++i)
+	if (argc == 1)
 	{
-		if (i)
-		{
-			tmp = abs(input[i] - input[i - 1]);
-			t = input[i] > input[i - 1];
-			if (tmp <= 10)
-				multiply(tmp, t ? '+' : '-');
+		printf("Enter an input: ");
+		int c;
+		size_t i = 0;
 
-			else
-			{
-				multiply(tmp % 10, t ? '+' : '-');
-				putchar('>');
-				multiply(tmp / 10, t ? '+' : '-');
-				putchar('[');
-				putchar('<');
-				multiply(10, '+');
-				putchar('>');
-				putchar('-');
-				putchar(']');
-				putchar('<');
-			}
-		}
-		else
+		while ((c = getchar()) != '\n' && c != EOF)
 		{
-			multiply(input[i] % 10, '+');
-			putchar('>');
-			multiply(input[i] / 10, '+');
-			putchar('[');
-			putchar('<');
-			multiply(10, '+');
-			putchar('>');
-			putchar('-');
-			putchar(']');
-			putchar('<');
+			if (i + 1 >= i_limit)
+			{
+				i_limit += MAX_LIMIT;
+				char *tmp = (char *)realloc(input, i_limit);
+				if (tmp == NULL)
+				{
+					puts(MEM_ERROR_MSG);
+					free(input);
+					return 1;
+				}
+				input = tmp;
+			}
+			input[i++] = (char)c;
 		}
-		putchar('.');
-		putchar('\n');
+		input[i] = '\0';
 	}
+
+	for (int i = 1; i < argc; ++i)
+	{
+
+		size_t n_mem = strlen(input) + strlen(argv[i]) + 2;
+
+		if (n_mem >= i_limit)
+		{
+			i_limit = n_mem + MAX_LIMIT;
+			char *tmp = (char *)realloc(input, i_limit);
+			if (tmp == NULL)
+			{
+				puts(MEM_ERROR_MSG);
+				free(input);
+				return 1;
+			}
+			input = tmp;
+		}
+
+		strcat(input, argv[i]);
+		strcat(input, " ");
+	}
+
+	if (strlen(input) > 0)
+	{
+		input[strlen(input) - 1] = '\0';
+	}
+
+    int tape[5] = {0, 30, 70, 100, 110};
+    int pointer = 0; 
+
+    multiply(10, '+');
+    putchar('[');
+    putchar('>'); multiply(3, '+');
+    putchar('>'); multiply(7, '+');
+    putchar('>'); multiply(10, '+');
+    putchar('>'); multiply(11, '+');
+    multiply(4, '<'); putchar('-');
+    putchar(']');
+    putchar('\n');
+
+    for (int i = 0; input[i]; ++i) {
+        int target = input[i];
+        int best_cell = 0;
+        int min_cost = 9999;
+
+        for (int c = 0; c < 5; c++) {
+            int pointer_moves = abs(pointer - c);
+            int value_changes = abs(tape[c] - target);
+            int total_cost = pointer_moves + value_changes;
+
+            if (total_cost < min_cost) {
+                min_cost = total_cost;
+                best_cell = c;
+            }
+        }
+
+        if (pointer < best_cell) {
+            multiply(best_cell - pointer, '>');
+        } else if (pointer > best_cell) {
+            multiply(pointer - best_cell, '<');
+        }
+        pointer = best_cell;
+
+        int diff = target - tape[pointer];
+        if (diff > 0) {
+            multiply(diff, '+');
+        } else if (diff < 0) {
+            multiply(-diff, '-');
+        }
+
+        putchar('.');
+        putchar('\n');
+        tape[pointer] = target;
+    }
 	free(input);
 	return 0;
 }
