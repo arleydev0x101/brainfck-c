@@ -9,7 +9,7 @@ It is a fast, lightweight, and highly optimized esoteric programming language in
 To get yourself started and try this program, use the following commands:
 
 ```bash
-git clone https://github.com/arleydev0x101/brainfck-c
+git clone [https://github.com/arleydev0x101/brainfck-c](https://github.com/arleydev0x101/brainfck-c)
 cd brainfck-c
 make
 
@@ -28,27 +28,38 @@ These are the following requirements:
 | **[GNU Make](https://www.gnu.org/software/make/)** | For quickly compiling the software |
 | **[gcc](https://gcc.gnu.org/) or [clang](https://clang.llvm.org/)** | Our C Compiler |
 | **[Git](https://git-scm.com/)** | For cloning/fetching the repository |
-| **[Cygwin](https://www.cygwin.com/), [MSYS2](https://www.msys2.org/), [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install) or [Git Bash](https://git-scm.com)** | For flexibility in performing tasks (natively supported in Linux) |
 
-In Linux and MacOS, most of these are already provided.
+In **Linux and MacOS**, most of these are already provided. If not, you can install them using your native package manager (e.g., `sudo apt install build-essential git` for Ubuntu/Debian, or `brew install gcc make` for MacOS).
 
-For **Windows**, I recommend downloading and installing [MSYS2](https://www.msys2.org/), since the tools we need can be easily managed there.
+For **Windows**, you have a few excellent options to get a POSIX-compatible environment:
 
-**Note: The following commands using `pacman` are only compatible with MSYS2 and Arch-based Linux Distributions.**
+### Option 1: MSYS2 (Recommended for native Windows)
+Download and install [MSYS2](https://www.msys2.org/). Open the **MSYS2 MinGW x64** terminal and run the following commands using the `pacman` package manager:
 
-### For GCC (Recommended)
 ```bash
 pacman -Syu
-pacman -S mingw-w64-ucrt-x86_64-gcc
+pacman -S mingw-w64-ucrt-x86_64-gcc make git
 
 # Check if gcc installed successfully
 gcc --version
 ```
 
-### For Git and Make
+### Option 2: WSL2 (Windows Subsystem for Linux)
+If you use WSL2 (usually running Ubuntu or Debian), you can install the standard Linux build tools directly in your WSL terminal:
+
 ```bash
-pacman -S make git
+sudo apt update
+sudo apt install build-essential git
+
+# Check if gcc installed successfully
+gcc --version
 ```
+
+### Option 3: Cygwin
+Download and run the [Cygwin Setup executable](https://www.cygwin.com/). During the installation process, when you reach the "Select Packages" screen, set the "View" dropdown to "Full" and search for the following packages to install:
+* `gcc-core` (The C compiler)
+* `make` (The GNU build tool)
+* `git` (For cloning the repository)
 
 ---
 
@@ -176,7 +187,7 @@ If this error occurs in your terminal when you use the `make` command:
 make: *** [Makefile:x: all] Error 127
 ```
 
-This usually means your C compiler wasn't found. Open the `makefile`. If you installed `clang` instead of `gcc`, change the `CC` variable at the top of the file:
+This usually means your C compiler wasn't found. Open the `Makefile`. If you installed `clang` instead of `gcc`, change the `CC` variable at the top of the file:
 
 ```makefile
 # Before
