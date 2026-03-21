@@ -1,4 +1,4 @@
-*.bf
-*.b
 brainfk
 brainfk-gen
+bin/*
+obj/*
